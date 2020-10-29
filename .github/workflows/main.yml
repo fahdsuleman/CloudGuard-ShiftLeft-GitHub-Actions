@@ -3,14 +3,14 @@ on:
   push:
     branches: [ master ]
     paths: 
-      - 'terraform/**'
-      - '!**.md'
+      - '*'
+      - '!README.md'
       - '!.github/workflows/**'
   pull_request:
     branches: [ master ]
     paths: 
-      - 'terraform'
-      - '!**.md'
+      - '*'
+      - '!README.md'
       - '!.github/workflows/**'
 jobs:
   Code_Scanner:
