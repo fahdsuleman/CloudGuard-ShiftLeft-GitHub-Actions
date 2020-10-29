@@ -28,8 +28,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the webapp container and save image
         run: |
-          docker build . --tag webapp:$(date +%s)
-          docker save webapp:$(date +%s) -o webapp.tar
+          docker build . --tag chkp/webapp:latest
+          docker save chkp/webapp:latest -o /tmp/webapp.tar
       - name: Run Shiftleft assessment on saved image
         run: |  
           docker pull checkpoint/shiftleft
