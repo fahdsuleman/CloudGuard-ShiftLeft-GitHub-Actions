@@ -29,7 +29,7 @@ jobs:
       - name: Build the webapp container and save image
         run: |
           docker build . --tag chkp/webapp:latest
-          docker save chkp/webapp:latest -o /tmp/webapp.tar
+          docker save chkp/webapp:latest -o webapp.tar
       - name: Run Shiftleft assessment on saved image
         run: |  
           docker pull checkpoint/shiftleft
