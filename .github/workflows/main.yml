@@ -13,27 +13,6 @@ on:
       - '!**.md'
       - '!.github/workflows/**'
 jobs:
-  IAC_Assessment:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Pull Check Point Shiftleft image
-        run: docker pull checkpoint/shiftleft
-      - name: Run IAC assessment on Terraform folder
-        run: |
-          docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft iac-assessment -p /tmp/terraform/ -r -64
-  Image_Scanner:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Pull DVWA web application from vulnerables/web-dvwa
-        run: |
-          docker pull vulnerables/web-dvwa
-          docker save vulnerables/web-dvwa -o dvwa.tar
-      - name: Run Shiftleft assessment on saved image
-        run: |  
-          docker pull checkpoint/shiftleft
-          docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft image-scan -i /tmp/dvwa.tar
   Code_Scanner:
     runs-on: ubuntu-latest
     steps:
@@ -42,4 +21,26 @@ jobs:
         run: |
           docker pull checkpoint/shiftleft
           docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft code-scan -s /tmp/
-          
+  Image_Scanner:
+    needs: Code_Scanner
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the webapp container and save image
+        run: |
+          docker build . --tag webapp:$(date +%s)
+          docker save webapp:$(date +%s) -o webapp.tar
+      - name: Run Shiftleft assessment on saved image
+        run: |  
+          docker pull checkpoint/shiftleft
+          docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft image-scan -i /tmp/webapp.tar
+  IAC_Assessment:
+    needs: [Code_Scanner, Image_Scanner]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Pull Check Point Shiftleft image
+        run: docker pull checkpoint/shiftleft
+      - name: Run IAC assessment on Terraform folder
+        run: |
+          docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft iac-assessment -p /tmp/terraform/ -r -64
