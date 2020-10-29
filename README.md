@@ -8,12 +8,11 @@ The ShiftLeft binary or Docker container will integrate posture management and S
 
 The ShiftLeft Binary can be installed on Windows, Linux or MacOS.
 
-The ShiftLeft container is available on Docker Hub:
-https://hub.docker.com/r/checkpoint/shiftleft
+The ShiftLeft container is available on [Docker Hub](https://hub.docker.com/r/checkpoint/shiftleft).
 
 Shiftleft SAST and static code analysis for code and container images will scan for CVEs, CWEs, Malware and credentials by leveraging Check Point ThreatCloud which is a collaborative network and cloud-driven knowledge base that delivers real-time dynamic security intelligence.
 
-Requirements: a CloudGuard Cloud Security Posture Management (formerly known as Dome9) account with active TF rulesets.
+Requirements: a CloudGuard Cloud Security Posture Management (formerly known as Dome9) account from [here](https://secure.dome9.com/v2/register/invite) with active TF rulesets.
 
 ## The following blades are currently available for use within the framework:
                                                                                        
