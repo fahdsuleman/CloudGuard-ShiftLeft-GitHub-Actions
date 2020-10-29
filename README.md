@@ -1,6 +1,6 @@
-# Check Point CloudGuard ShiftLeft integration with Jenkins CICD pipeline:
+# Check Point CloudGuard ShiftLeft integration with GitHub actions
 
-## ![header image](warning.jpeg) This demo contains Malware so please do not use in a production environment and Handle with Care
+## This demo contains malicious samples - please do not use in a production environment and do not clone on an unprotected machine
 
 
 CloudGuard ShiftLeft CLI tool is a framework that will enable you to access all the various blades that CloudGuard offers quick and easy for integration within your pipeline.
@@ -37,15 +37,8 @@ The image-scan blade will scan Docker container images for security risks and vu
 
 > shiftleft image-scan 
 
-
-
-![header image](shifleftcicd.png) 
-
-[![header image](shift.png)](https://www.youtube.com/watch?v=UAZixZ7ddbQ&feature=youtu.be "ShiftLeft")
-
-
-#### Please add your Cloudguard credentials and add them to Jenkins using CHKP_CLOUDGUARD_ID and CHKP_CLOUDGUARD_SECRET
-
+#### Please add your Cloudguard credentials to repository settings using CHKP_CLOUDGUARD_ID and CHKP_CLOUDGUARD_SECRET.
+#### If using SourceGuard, generate authentication token and add SG_CLIENT_ID and SG_SECRET_KEY to repository settings.
 ### The scan result for the source code scan:
 
 > ShiftLeft is capable of finding CVEs, credentials and Malware!
