@@ -2,7 +2,7 @@
 
 This repository provides a self-contained demo of integration of Check Point shiftleft with GitHub actions. Fork it and trigger the GitHub actions worflow by adding a comment to webapp.js.
 
-CloudGuard ShiftLeft will allow you to scan source code, Docker container images and serverless deployment packages, Terraform templates, and more. 
+[CloudGuard ShiftLeft](https://github.com/dome9/shiftleft) will allow you to scan source code, Docker container images and serverless deployment packages, Terraform templates, and more. 
 The ShiftLeft binary or Docker container will integrate posture management and SAST to your CI/CD deployment pipelines for any CI server.
 
 The ShiftLeft container is available on [Docker Hub](https://hub.docker.com/r/checkpoint/shiftleft).
