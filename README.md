@@ -1,5 +1,4 @@
-[![ShiftLeft-Scans  Actions Status](https://github.com/chkp-apopisteru/CloudGuard-ShiftLeft-GitHub-Actions/workflows/ShiftLeft-Scans/badge.svg)]
-(https://github.com/chkp-apopisteru/CloudGuard-ShiftLeft-GitHub-Actions/actions)
+![ShiftLeft-Scans  Actions Status](https://github.com/chkp-apopisteru/CloudGuard-ShiftLeft-GitHub-Actions/workflows/ShiftLeft-Scans/badge.svg)
 
 # Check Point CloudGuard ShiftLeft integration with GitHub actions - basic demo
 
