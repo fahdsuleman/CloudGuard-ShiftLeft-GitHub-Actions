@@ -29,4 +29,4 @@ The `image-scan` blade will scan Docker container images for security risks and 
 
 Commit will trigger the GitHub actions workflow which chains `code-scan` (the entire repository is fed to containerized shiftleft), `image-scan` (which packs webapp into a Docker container image scanned by shiftleft) and iac-assessment (which scans terraform template) [TO DO: and deploys the containerized webapp].
 
-The jobs are sequential: code-scan will fail. Comment the `needs:` lines in `.github/workflows/main.yml` to have the jobs run in parallel.
+The jobs are sequential: code-scan will fail. Comment the `needs:` lines in `.github/workflows/main.yml` to run the jobs simultaneously.
