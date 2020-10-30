@@ -1,4 +1,4 @@
-name: Check Point CloudGuard Assessment
+name: ShiftLeft-Scans
 on:
   push:
     branches: [ master ]

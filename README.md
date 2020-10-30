@@ -1,3 +1,6 @@
+[![ShiftLeft-Scans  Actions Status](https://github.com/chkp-apopisteru/CloudGuard-ShiftLeft-GitHub-Actions/workflows/ShiftLeft-Scans/badge.svg)]
+(https://github.com/chkp-apopisteru/CloudGuard-ShiftLeft-GitHub-Actions/actions)
+
 # Check Point CloudGuard ShiftLeft integration with GitHub actions - basic demo
 
 This repository provides a self-contained demo of integration of Check Point shiftleft with GitHub actions. Fork it and trigger the GitHub actions worflow by adding a comment to webapp.js.
