@@ -5,8 +5,8 @@ const port = 8000;
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('you have been hacked"\n');
+  res.setHeader('Content-Type', 'application/json');
+  res.end('{"errors": [{"code": "0", "message": "success"}]}');
 });
 
 server.listen(port, hostname, () => {
