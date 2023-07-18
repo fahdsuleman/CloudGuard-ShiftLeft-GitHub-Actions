@@ -1,0 +1,28 @@
+name: ShiftLeft-Scans
+on:
+  push:
+    branches: [ master ]
+    paths: 
+      - '*'
+      - '!README.md'
+      - '!.github/workflows/**'
+  pull_request:
+    branches: [ master ]
+    paths: 
+      - '*'
+      - '!README.md'
+      - '!.github/workflows/**'
+jobs:
+  Image_Scanner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the webapp container and save image
+        run: |
+         docker build . --tag chkp/webapp:latest
+         docker save chkp/webapp:latest -o webapp.tar
+      - name: Run Shiftleft assessment on saved image
+        run: |  
+          docker pull checkpoint/shiftleft
+          docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" -e "SHIFTLEFT_REGION=${{ secrets.SHIFTLEFT_REGION }}" checkpoint/shiftleft shiftleft image-scan -r 766 -e 2765a0b8-1e62-4152-8753-49d65b127579 -i /tmp/webapp.tar
+          exit 0 
