@@ -22,7 +22,7 @@ jobs:
        #   docker pull checkpoint/shiftleft
       #    docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft code-scan -s /tmp/
   Image_Scanner:
-    needs: Code_Scanner
+    #needs: Code_Scanner
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
