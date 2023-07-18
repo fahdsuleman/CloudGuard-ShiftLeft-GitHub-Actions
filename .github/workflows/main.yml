@@ -32,7 +32,7 @@ jobs:
           docker save chkp/webapp:latest -o webapp.tar
       - name: Run Shiftleft assessment on saved image
         run: |  
-          docker pull checkpoint/shiftleft
+          docker pull checkpoint/shiftleft:0.36
           docker run -v=$(pwd):/tmp/ -e "CHKP_CLOUDGUARD_ID=${{ secrets.CHKP_CLOUDGUARD_ID }}" -e "CHKP_CLOUDGUARD_SECRET=${{ secrets.CHKP_CLOUDGUARD_SECRET }}" checkpoint/shiftleft shiftleft image-scan -i /tmp/webapp.tar
 # TODO: add here logic to save artifact or to pass to next job     
 #  IAC_Assessment:
